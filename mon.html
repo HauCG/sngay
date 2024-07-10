@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<html>
+<head>
+    <title>BNNgay</title>
+</head>
+<body>
+
+<label for="monthInput">Nhập tháng:</label>
+<input type="number" id="monthInput">
+<label for="yearInput">Nhập năm:</label>
+<input type="number" id="yearInput">
+<button onclick="checkMonth()">Kiểm tra</button>
+
+<p id="result"></p>
+
+<script>
+    function checkMonth() {
+        var month = parseInt(document.getElementById("monthInput").value);
+        var year = parseInt(document.getElementById("yearInput").value);
+
+        var daysInMonth;
+
+        switch (month) {
+            case 1:  // January
+            case 3:  // March
+            case 5:  // May
+            case 7:  // July
+            case 8:  // August
+            case 10: // October
+            case 12: // December
+                daysInMonth = 31;
+                break;
+            case 4:  // April
+            case 6:  // June
+            case 9:  // September
+            case 11: // November
+                daysInMonth = 30;
+                break;
+            case 2:  // February
+                if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+                    daysInMonth = 28; // Năm nhuận
+                } else {
+                    daysInMonth = 27; // Năm thường
+                }
+                break;
+            default:
+                daysInMonth = 'Nhập tháng từ 1 đến 12';
+                break;
+        }
+
+        if (daysInMonth != -1) {
+            document.getElementById("result").innerHTML = "Tháng " + month + " năm " + year + " có " + daysInMonth + " ngày.";
+        } else {
+            document.getElementById("result").innerHTML = "Tháng không hợp lệ.";
+        }
+    }
+</script>
+
+</body>
+</html>
